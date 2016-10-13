@@ -5,6 +5,7 @@ if (env('APP_ENV') === 'local') {
     $additionalProviders += [
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
+//        'Laralib\L5scaffold\GeneratorsServiceProvider',
     ];
 }
 
