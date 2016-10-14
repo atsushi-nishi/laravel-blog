@@ -36,6 +36,7 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapUserRoutes();
+        $this->mapBlogRoutes();
         $this->mapAdminRoutes();
         $this->mapApiRoutes();
 
@@ -91,6 +92,22 @@ class RouteServiceProvider extends ServiceProvider
             'prefix'     => 'api',
         ], function ($router) {
             require base_path('routes/api.php');
+        });
+    }
+    /**
+     * Define the "blog" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapBlogRoutes()
+    {
+        Route::group([
+            'middleware' => 'blog',
+            'namespace'  => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/blog.php');
         });
     }
 }
