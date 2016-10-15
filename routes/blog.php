@@ -2,16 +2,20 @@
 
 //\Route::group(['middleware' => ['blog.values']], function () {
 \Route::group(['middleware' => []], function () {
-//    \Route::get('/blogs/', 'Blog\IndexController@index');
-    \Route::get('/blogs/', 'User\IndexController@index');
-//    \Route::get('/blogs/index', 'Blog\IndexController@index');
-/*
-
-    \Route::get('hello/', function()
-    {
-          return 'Hello World';
+//    \Route::get('/blogs/', 'User\IndexController@index');
+    \Route::get('/blogs/', 'Blog\IndexController@index');
+    \Route::get('/blogs/{blogId}', 'Blog\IndexController@show');
+    /*
+    \Route::get('/blogs1/', function () {
+        //return view('page/blog/index', ['name' => 'James']);  
+        $message = ['a' => 1, 'b' => 2, 'c' => 3];
+        echo '<pre>' . var_export($message, true) . '</pre>';
+        return view('pages/blog/index', ['name' => 'James']);  
+        //return 'OK';
     });
-*/
+    */
+//    \Route::get('/blogs/index', 'Blog\IndexController@index');
+
 });
 
 

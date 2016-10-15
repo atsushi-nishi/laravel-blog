@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class blog
+class Blog
 {
     /**
      * Handle an incoming request.

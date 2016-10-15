@@ -104,7 +104,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapBlogRoutes()
     {
         Route::group([
-            'middleware' => 'blog',
+            //'middleware' => 'blog',
             'namespace'  => $this->namespace,
         ], function ($router) {
             require base_path('routes/blog.php');

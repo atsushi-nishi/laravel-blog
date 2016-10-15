@@ -5,7 +5,6 @@ if (env('APP_ENV') === 'local') {
     $additionalProviders += [
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
-//        'Laralib\L5scaffold\GeneratorsServiceProvider',
     ];
 }
 
@@ -194,6 +193,10 @@ return [
         App\Providers\ServiceBindServiceProvider::class,
         App\Providers\HelperBindServiceProvider::class,
 
+        /* Add */
+        Collective\Html\HtmlServiceProvider::class,
+
+
     ], $additionalProviders),
 
     /*
@@ -250,6 +253,8 @@ return [
         'PaginationHelper'      => App\Facades\PaginationHelper::class,
         'UserNotificationHelper'  => App\Facades\UserNotificationHelper::class,
         /* NEW FACADE */
+        'Form' => Collective\Html\FormFacade::class,  // 追加
+        'Html' => Collective\Html\HtmlFacade::class,  // 追加
     ],
 
     'offline_mode'         => env('OFFLINE_MODE', null),
