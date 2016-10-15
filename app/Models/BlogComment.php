@@ -24,17 +24,29 @@ class BlogComment extends Base
      */
     protected $table = 'blog_comments';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'blog_id',
+        'comment_name',
+        'comment_body',
+        'deleted_at',
+    ];
+
     /*
      * API Presentation
      */
 
     public function toAPIArray()
     {
-      /*
         return [
-            'id'   => $this->id,
-            'name' => $this->name,
+            'id' => $this->id,
+            'blog_id' => $this->blog_id,
+            'comment_name' => $this->comment_name,
+            'comment_body' => $this->comment_body,
         ];
-      */
     }
 }

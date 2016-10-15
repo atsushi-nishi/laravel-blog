@@ -107,7 +107,7 @@
        Comments:
        @foreach( $blogComments as $comment )
             <div>
-                {{ $comment->comment_name }}
+                Name: {{ $comment->comment_name }}
             </div>
             <div>
                 {{ $comment->comment_body }}
@@ -116,5 +116,27 @@
     </div>
 
 
+    <div class="blog-comment-box-body">
+        <p class="blog-comment-box-msg">Input a comment here!</p>
+
+        <form action="{!! action('BlogController@postComment') !!}" method="post">
+            <div class="form-group has-feedback">
+                <input type="hidden" name="blog_id" value="{{ $blog->id }}" class="form-control">
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" name="comment_name" class="form-control" placeholder="Your name" required>
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <textarea name="comment_body" class="form-control" cols="50" rows="10" placeholder="Comment here" required></textarea>
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Post comment</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
 @stop

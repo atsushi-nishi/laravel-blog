@@ -123,8 +123,8 @@
                 @foreach( $models as $model )
                     <tr>
                         <td>
-                            {{-- <a href="{!! URL::action('Blog\IndexController@show', $model->id) !!}" class="btn btn-block btn-primary btn-sm">link</a> --}}
-                            <a href="{!! URL::action('Blog\IndexController@show', $model->id) !!}" class="btn btn-block btn-primary btn-sm">
+                            {{-- <a href="{!! URL::action('BlogController@show', $model->id) !!}" class="btn btn-block btn-primary btn-sm">link</a> --}}
+                            <a href="{!! URL::action('BlogController@show', $model->id) !!}" class="btn btn-block btn-primary btn-sm">
                                 {{ $model->title }}
                             </a>
                             {{--

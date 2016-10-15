@@ -50,7 +50,19 @@ class Blog extends Base
      */
     protected $table = 'blogs';
 
-    /*
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'blog_id',
+        'comment_name',
+        'comment_body',
+        'deleted_at',
+    ];
+
+     /*
      * API Presentation
      */
 
