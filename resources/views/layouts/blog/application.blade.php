@@ -18,7 +18,6 @@
 @include('layouts.blog.frame')
 @endif
 @include('layouts.blog.scripts')
-@section('scripts')
-@show
+@yield('scripts')
 </body>
 </html>

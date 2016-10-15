@@ -88,6 +88,7 @@ class RepositoryBindServiceProvider extends ServiceProvider
 
         /* NEW BINDING */
         $this->app->singleton('App\Repositories\BlogRepositoryInterface', 'App\Repositories\Eloquent\BlogRepository');
+        $this->app->singleton('App\Repositories\BlogTagRepositoryInterface', 'App\Repositories\Eloquent\BlogTagRepository');
         $this->app->singleton('App\Repositories\BlogCommentRepositoryInterface', 'App\Repositories\Eloquent\BlogCommentRepository');
 
     }

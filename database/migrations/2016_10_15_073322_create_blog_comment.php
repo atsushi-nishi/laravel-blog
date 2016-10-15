@@ -22,7 +22,7 @@ class CreateBlogComment extends Migration
             $table->integer('like_count');
             $table->integer('dislike_count');
             $table->timestamps();
-            $table->timestamp('deleted_at')->default(NULL);
+            $table->timestamp('deleted_at')->nullable();
         });
         //
     }

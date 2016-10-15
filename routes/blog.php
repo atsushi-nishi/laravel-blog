@@ -3,6 +3,8 @@
 //\Route::group(['middleware' => ['blog.values']], function () {
 \Route::group(['middleware' => []], function () {
     \Route::get('/blogs/', 'BlogController@index');
+    \Route::get('/blogs/search/', 'BlogController@search');
+    \Route::get('/blogs/tag/{tag}', 'BlogController@listByTag');
     \Route::get('/blogs/{blogId}', 'BlogController@show');
     \Route::post('/blogs/postComment', 'BlogController@postComment');
 

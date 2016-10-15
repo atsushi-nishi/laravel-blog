@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBlogColumn extends Migration
+class CreateBlogTags extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class AddBlogColumn extends Migration
      */
     public function up()
     {
-        Schema::table('blogs', function($table)
+        Schema::create('blog_tags', function(Blueprint $table)
         {
-            $table->timestamp('deleted_at')->nullable()->after('updated_at');
+            $table->increments('id');
+            $table->integer('blog_id');
+            $table->char('tag', 16);
+            $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
- //
-
+                
     }
 
     /**

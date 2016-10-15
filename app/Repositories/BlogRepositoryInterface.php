@@ -3,8 +3,6 @@
 interface BlogRepositoryInterface extends SingleKeyModelRepositoryInterface
 {
 
-    public function getById($id);
-
     /**
      * @param  int                        $userId
      * @param  string                     $order
@@ -17,46 +15,11 @@ interface BlogRepositoryInterface extends SingleKeyModelRepositoryInterface
 
     public function getIndexInfoByCreateUserId($createUserId, $order = 'id', $direction = 'desc', $offset, $limit);
 
-    public function getBySearchWord($order = 'id', $direction = 'desc', $offset, $limit);
+    public function getIndexInfoByCreateUserIdAndSearchWord($createUserId, $word, $order = 'id', $direction = 'desc', $offset, $limit);
 
-    /**
-     * @param  int $userId
-     * @return int
-     */
-    //public function countByUserId($userId);
+    public function countByCreateUserId($createUserId);
 
-    /**
-     * @param  string                     $categoryType
-     * @param  int                        $userId
-     * @param  string                     $order
-     * @param  string                     $direction
-     * @param  int                        $offset
-     * @param  int                        $limit
-     * @return \App\Models\Notification[]
-     */
-    /*
-    public function getByCategoryTypeAndUserId(
-        $categoryType,
-        $userId,
-        $order = 'id',
-        $direction = 'desc',
-        $offset,
-        $limit
-    );
-    */
+    public function countByCreateUserIdAndSearchWord($createUserId, $word);
 
-    /**
-     * @param  int $userId
-     * @param  int $lastId
-     * @return int
-     */
-    //public function countUnreadByUserId($userId, $lastId);
-
-    /**
-     * @param  int     $userId
-     * @param  int     $lastId
-     * @return boolean
-     */
-    //public function updateReadByUserId($userId, $lastId);
 
 }

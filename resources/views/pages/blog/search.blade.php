@@ -31,7 +31,6 @@
             overflow-y: scroll;
         }
     </style>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 @stop
 
 @section('scripts')
@@ -99,26 +98,6 @@
 
     <h1>This is blog index page</h1>
 
-    <div class="blog-comment-box-body">
-        <p class="blog-comment-box-msg">Seach word</p>
-
-        <form action="{!! action('BlogController@search') !!}" method="get">
-            <div class="form-group has-feedback">
-                <input type="text" name="word" class="form-control" placeholder="" required>
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Post comment</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div>
-        {{ $models }}
-    </div>
-
     <div class="box box-primary">
         <div class="box-body scroll">
             <table class="table table-bordered">
@@ -135,11 +114,7 @@
                                 {{ $model->title }}
                             </a>
                         </td>
-                        <td>
-                            @foreach( $model->tags as $tag )
-                                {{ $tag }}
-                            @endforeach
-                        </td>
+                        <td>{{ $model->tags }}</td>
                         <td>{{ $model->created_at }}</td>
                     </tr>
                 @endforeach
