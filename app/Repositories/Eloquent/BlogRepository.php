@@ -42,7 +42,7 @@ class BlogRepository extends SingleKeyModelRepository implements BlogRepositoryI
     public function getIndexInfoByCreateUserId($createUserId, $order = 'id', $direction = 'desc', $offset, $limit)
     {
         $model = $this->getBlankModel();
-        $index_info = ['id', 'title', 'created_at'];
+        $index_info = ['id', 'title', 'body', 'created_at'];
         return $model->where('create_user_id', '=', $createUserId)
             ->orderBy($order, $direction)
             ->offset($offset)->limit($limit)
@@ -52,9 +52,9 @@ class BlogRepository extends SingleKeyModelRepository implements BlogRepositoryI
     public function getIndexInfoByCreateUserIdAndBlogIds($createUserId, $blogIds, $order = 'id', $direction = 'desc', $offset, $limit)
     {
         $model = $this->getBlankModel();
-        $index_info = ['id', 'title', 'created_at'];
+        $index_info = ['id', 'title', 'body', 'created_at'];
         return $model->where('create_user_id', '=', $createUserId)
-            ->whereIn('blog_id', $blogIds)
+            ->whereIn('id', $blogIds)
             ->orderBy($order, $direction)
             ->offset($offset)->limit($limit)
             ->get($index_info);

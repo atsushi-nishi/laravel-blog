@@ -4,6 +4,7 @@ use App\Http\Requests\BaseRequest;
 use App\Http\Controllers\Controller;
 
 use App\Repositories\ArticleRepositoryInterface;
+use App\Repositories\BlogRepositoryInterface;
 use App\Http\Requests\Admin\ArticleRequest;
 use App\Http\Requests\PaginationRequest;
 use App\Repositories\ImageRepositoryInterface;
@@ -16,6 +17,8 @@ class ArticleController extends Controller
 
     /** @var \App\Repositories\ArticleRepositoryInterface */
     protected $articleRepository;
+
+    protected $blogRepository;
 
     /** @var ArticleServiceInterface $articleService */
     protected $articleService;
@@ -31,6 +34,7 @@ class ArticleController extends Controller
 
     public function __construct(
         ArticleRepositoryInterface $articleRepository,
+        BlogRepositoryInterface $blogRepository,
         ArticleServiceInterface $articleService,
         FileUploadServiceInterface $fileUploadService,
         ImageRepositoryInterface $imageRepository,
@@ -38,6 +42,7 @@ class ArticleController extends Controller
     )
     {
         $this->articleRepository = $articleRepository;
+        $this->blogRepository = $blogRepository;
         $this->articleService = $articleService;
         $this->fileUploadService = $fileUploadService;
         $this->imageRepository = $imageRepository;
@@ -140,6 +145,19 @@ class ArticleController extends Controller
             $image->entity_id = $model->id;
         }
         $this->articleService->resetImageIdSession();
+
+
+        // Add by a-nishi
+        $blogInput = [
+            'title' => $input['title'],
+            'body' => $input['content'],
+            'create_user_id' => 1,
+        ];
+        $blogModel = $this->blogRepository->create($blogInput);
+        if (empty($blogModel)) {
+            return redirect()->back()->withErrors(trans('admin.errors.general.save_failed'));
+        }
+        // a-nishi
 
         return redirect()->action('Admin\ArticleController@index')->with('message-success',
             trans('admin.messages.general.create_success'));

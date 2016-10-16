@@ -1,95 +1,36 @@
 @extends('layouts.blog.application')
 
 @section('metadata')
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Blogname Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 @stop
 
 @section('styles')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/froala_editor.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/froala_style.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/char_counter.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/code_view.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/colors.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/emoticons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/file.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/fullscreen.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/image.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/image_manager.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/line_breaker.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/quick_insert.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/table.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/video.css">
-    <link href="{{ \URLHelper::asset('libs/datetimepicker/css/bootstrap-datetimepicker.min.css', 'admin') }}" rel="stylesheet" type="text/css">
-    <style>
-        .froala-element {
-            min-height: 500px;
-            max-height: 500px;
-            overflow-y: scroll;
-        }
-        .f-html .froala-element {
-            min-height: 520px;
-            max-height: 520px;
-            overflow-y: scroll;
-        }
-    </style>
+    <link href="/static/blog/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="/static/blog/css/style.css" rel='stylesheet' type='text/css' />
 @stop
 
-@section('scripts')
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/froala_editor.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/align.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/char_counter.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/code_beautifier.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/code_view.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/colors.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/emoticons.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/entities.min.js"></script>
-    <!--
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/file.min.js"></script>
-    -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/font_family.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/font_size.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/fullscreen.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/image.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/image_manager.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/inline_style.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/line_breaker.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/link.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/lists.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/paragraph_format.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/paragraph_style.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/quick_insert.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/quote.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/table.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/save.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/url.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/video.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/code_view.min.js"></script>
-    <script src="{{ \URLHelper::asset('libs/moment/moment.min.js', 'admin') }}"></script>
-    <script src="{{ \URLHelper::asset('libs/datetimepicker/js/bootstrap-datetimepicker.min.js', 'admin') }}"></script>
-    <script>
-        Boilerplate.imageUploadUrl = "{!! URL::action('Admin\ArticleController@postImage') !!}";
-        Boilerplate.imageUploadParams = {
-            "article_id" : "{!! empty($article->id) ? 0 : $article->id !!}",
-            "_token": "{!! csrf_token() !!}"
-        };
-        Boilerplate.imagesLoadURL = "{!! URL::action('Admin\ArticleController@getImages') !!}";
-        Boilerplate.imagesLoadParams = {
-            "article_id" : "{!! empty($article->id) ? 0 : $article->id !!}"
-        };
-        Boilerplate.imageDeleteURL = "{!! URL::action('Admin\ArticleController@deleteImage') !!}";
-        Boilerplate.imageDeleteParams = {
-            "_token": "{!! csrf_token() !!}"
-        };
-    </script>
-    <script>
-        $.FroalaEditor.DEFAULTS.key = '';
-    </script>
-    <script src="{{ \URLHelper::asset('js/pages/articles/edit.js', 'admin') }}"></script>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+@section('scripts')
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="blog/text/javascript" src="/static/blog/js/move-top.js"></script>
+    <script type="blog/text/javascript" src="/static/blog/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+        $(".scroll").click(function(event){        
+        event.preventDefault();
+        $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+        });
+        });
+    </script>
 @stop
 
 @section('title')
-    This is blog page
+    Blogname a Blogging Category Flat Bootstarp  Responsive Web Template | Home :: w3layouts
 @stop
 
 @section('header')
@@ -97,48 +38,122 @@
 
 @section('content')
 
-    {{ $blog }}
-    <h1>
-        {{ $blog->title }}
-    </h1>
-    <div>
-        {{ $blog->body }}
+    <div class="banner">
+        <div class="header">  
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"> <img src="/static/blog/images/logo.png" title="soup" /></a>
+                </div>
+                <div class="top-menu">
+                    <span class="menu"></span> 
+                    <ul>
+                    <li class="active"><a href="/blogs">HOME</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>  
+                    <li><a href="terms.html">TERMS</a></li>
+                    <div class="clearfix"> </div>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+                <script>
+                    $("span.menu").click(function(){
+                    $(".top-menu ul").slideToggle("slow" , function(){
+                    });
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="container">
+            <div class="banner-head">
+                <h1>Lorem ipsum dolor sit amet</h1>
+                <h2>cliquam tincidunt mauris</h2>
+            </div>
+            <div class="banner-links">
+                <ul>
+                    <li class="active"><a href="/blogs">LOREM IPSUM</a></li>
+                    <li><a href="#">DOLAR SITE AMET</a></li>
+                    <li><a href="#">MORBI IN SEM</a></li>
+                    <div class="clearfix"></div>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <div>
-       Comments:
-       @foreach( $blogComments as $comment )
-            <div>
-                Name: {{ $comment->comment_name }}
-            </div>
-            <div>
-                {{ $comment->comment_body }}
-            </div>
-       @endforeach
-    </div>
+    <div class="container">
+        <div class="content-grids">
+            <div class="col-md-8 content-main">
+                <div class="content-grid">
+                    <div class="content-grid-head">
+                        <h4>{{ $blog->created_at }}</h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="content-grid-single">
+                        <h3>{{ $blog->title }}</h3>
+                        <img class="single-pic" src="/static/blog/images/c{{ $blog->id % 3 + 1 }}.jpg" alt=""/>
 
+                        <p><?php echo $blog->body ?></p>
 
-    <div class="blog-comment-box-body">
-        <p class="blog-comment-box-msg">Input a comment here!</p>
-
-        <form action="{!! action('BlogController@postComment') !!}" method="post">
-            <div class="form-group has-feedback">
-                <input type="hidden" name="blog_id" value="{{ $blog->id }}" class="form-control">
-            </div>
-            <div class="form-group has-feedback">
-                <input type="text" name="comment_name" class="form-control" placeholder="Your name" required>
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-                <textarea name="comment_body" class="form-control" cols="50" rows="10" placeholder="Comment here" required></textarea>
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Post comment</button>
+                        <div class="categories">
+                            <h3>CATEGORIES</h3>
+                            @foreach( $blogTagList[$blog->id] as $tag )
+                                <a href="{!! URL::action('BlogController@listByTag', $tag) !!}">#{{ $tag }}</a>
+                            @endforeach
+                        </div>
+    
+                        <div class="content-form">
+                            <h3>Leave a comment</h3>
+                            <form action="{!! action('BlogController@postComment') !!}" method="post">
+                                <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+                                <input type="text" name="comment_name" placeholder="Your name" required>
+                                <textarea name="comment_body" class="form-control" placeholder="Message" required></textarea>
+                                <input type="submit" value="SEND">
+                            </form>
+                        </div>
+                        <div class="comments">
+                            <h3>Comment</h3>
+                            @foreach( $blogComments as $comment )
+                                <div class="comment-grid">
+                                    <img src="/static/blog/images/pic.png" alt=""/>
+                                    <div class="comment-info">
+                                        <h4>{{  $comment->comment_name  }}</h4>
+                                        <p>{{ $comment->comment_body }}</p>
+                                        <h5>{{ $comment->created_at }}</h5>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
+
+        <div class="col-md-4 content-main-right">
+            <div class="search">
+                <h3>SEARCH HERE</h3>
+                <form action="{!! action('BlogController@search') !!}" method="get">
+                    <input type="text" name="searchWord" placeholder="" value="{{ $searchWord }}" required>
+                    <input type="submit" value="">
+                </form>
+           </div>
+            <div class="categories">
+                <h3>CATEGORIES</h3>
+                @foreach( $tagCounts as $tagCount)
+                    <li><a href="{!! URL::action('BlogController@listByTag', $tagCount->tag) !!}">{{ $tagCount->tag }}({{ $tagCount->count }})</a></li>
+                @endforeach
+            </div>
+            {{--
+            <div class="archives">
+                <h3>ARCHIVES</h3>
+                <li class="active"><a href="#">July 2014</a></li>
+                <li><a href="#">June 2014</a></li>
+                <li><a href="#">May 2014</a></li>
+            </div>
+            --}}
+        </div>
+        <div class="clearfix"></div>
     </div>
 
+
+    </div>
 @stop
+

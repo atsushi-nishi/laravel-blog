@@ -56,9 +56,9 @@ class Blog extends Base
      * @var array
      */
     protected $fillable = [
-        'blog_id',
-        'comment_name',
-        'comment_body',
+        'title',
+        'body',
+        'create_user_id',
         'deleted_at',
     ];
 

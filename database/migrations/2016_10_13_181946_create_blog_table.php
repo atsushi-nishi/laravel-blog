@@ -18,7 +18,6 @@ class CreateBlogTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('body');
-            $table->string('tags');
             $table->string('create_user_id');
             $table->timestamps();
         });

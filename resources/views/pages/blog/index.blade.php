@@ -1,160 +1,197 @@
 @extends('layouts.blog.application')
 
 @section('metadata')
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Blogname Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 @stop
 
 @section('styles')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/froala_editor.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/froala_style.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/char_counter.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/code_view.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/colors.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/emoticons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/file.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/fullscreen.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/image.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/image_manager.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/line_breaker.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/quick_insert.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/table.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/css/plugins/video.css">
-    <link href="{{ \URLHelper::asset('libs/datetimepicker/css/bootstrap-datetimepicker.min.css', 'admin') }}" rel="stylesheet" type="text/css">
-    <style>
-        .froala-element {
-            min-height: 500px;
-            max-height: 500px;
-            overflow-y: scroll;
-        }
-        .f-html .froala-element {
-            min-height: 520px;
-            max-height: 520px;
-            overflow-y: scroll;
-        }
-    </style>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="/static/blog/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="/static/blog/css/style.css" rel='stylesheet' type='text/css' />
 @stop
 
 @section('scripts')
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/froala_editor.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/align.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/char_counter.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/code_beautifier.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/code_view.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/colors.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/emoticons.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/entities.min.js"></script>
-    <!--
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/file.min.js"></script>
-    -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/font_family.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/font_size.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/fullscreen.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/image.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/image_manager.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/inline_style.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/line_breaker.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/link.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/lists.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/paragraph_format.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/paragraph_style.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/quick_insert.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/quote.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/table.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/save.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/url.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/video.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/plugins/code_view.min.js"></script>
-    <script src="{{ \URLHelper::asset('libs/moment/moment.min.js', 'admin') }}"></script>
-    <script src="{{ \URLHelper::asset('libs/datetimepicker/js/bootstrap-datetimepicker.min.js', 'admin') }}"></script>
-    <script>
-        Boilerplate.imageUploadUrl = "{!! URL::action('Admin\ArticleController@postImage') !!}";
-        Boilerplate.imageUploadParams = {
-            "article_id" : "{!! empty($article->id) ? 0 : $article->id !!}",
-            "_token": "{!! csrf_token() !!}"
-        };
-        Boilerplate.imagesLoadURL = "{!! URL::action('Admin\ArticleController@getImages') !!}";
-        Boilerplate.imagesLoadParams = {
-            "article_id" : "{!! empty($article->id) ? 0 : $article->id !!}"
-        };
-        Boilerplate.imageDeleteURL = "{!! URL::action('Admin\ArticleController@deleteImage') !!}";
-        Boilerplate.imageDeleteParams = {
-            "_token": "{!! csrf_token() !!}"
-        };
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/blog/js/move-top.js"></script>
+    <script type="text/javascript" src="/static/blog/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+        $(".scroll").click(function(event){    
+        event.preventDefault();
+        $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+        });
+        });
     </script>
-    <script>
-        $.FroalaEditor.DEFAULTS.key = '';
-    </script>
-    <script src="{{ \URLHelper::asset('js/pages/articles/edit.js', 'admin') }}"></script>
 @stop
 
 @section('title')
-    This is blog index
+    Blogname a Blogging Category Flat Bootstarp  Responsive Web Template | Home :: w3layouts
 @stop
 
 @section('header')
-    Blog Page header
 @stop
 
 @section('content')
-
-    <h1>This is blog index page</h1>
-
-    <div class="blog-comment-box-body">
-        <p class="blog-comment-box-msg">Seach word</p>
-
-        <form action="{!! action('BlogController@search') !!}" method="get">
-            <div class="form-group has-feedback">
-                <input type="text" name="searchWord" class="form-control" placeholder="" value="{{ $searchWord }}" required>
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+    <div class="banner">
+        <div class="header">  
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"> <img src="/static/blog/images/logo.png" title="soup" /></a>
+                </div>
+                <div class="top-menu">
+                    <span class="menu"> </span> 
+                    <ul>
+                    <li class="active"><a href="/blogs">HOME</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>  
+                    <li><a href="terms.html">TERMS</a></li>
+                    <div class="clearfix"> </div>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+                <script>
+                    $("span.menu").click(function(){
+                    $(".top-menu ul").slideToggle("slow" , function(){
+                    });
+                    });
+                </script>
             </div>
-            <div class="row">
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Post comment</button>
+        </div>
+        <div class="container">
+            <div class="banner-head">
+                <h1>Lorem ipsum dolor sit amet</h1>
+                <h2>cliquam tincidunt mauris</h2>
+            </div>
+            <div class="banner-links">
+                <ul>
+                    <li class="active"><a href="/blogs">LOREM IPSUM</a></li>
+                    <li><a href="#">DOLAR SITE AMET</a></li>
+                    <li><a href="#">MORBI IN SEM</a></li>
+                    <div class="clearfix"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-grids">
+            <div class="col-md-8 content-main">
+                <div class="content-grid">
+
+                    @foreach( $blogs as $blog)
+                        <div class="content-grid-sec">
+                            <div class="content-grid-head">
+                                <h4>{{ $blog->created_at }}<h4>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="content-grid-info">
+                                <h3>
+                                    <a href="{!! URL::action('BlogController@show', $blog->id) !!}">
+                                        {{ $blog->title }}
+                                    </a>
+                                </h3>
+
+                                <p><?php echo str_limit($blog->body, 40, '...') ?></p>
+                                <img src="/static/blog/images/c{{ $blog->id % 3 + 1}}.jpg" alt=""/>
+                                <a href="{!! URL::action('BlogController@show', $blog->id) !!}" class='bttn'> MORE</a>
+                                <div class="categories">
+                                    <h3>CATEGORIES</h3>
+                                    @foreach( $blogTagList[$blog->id] as $tag )
+                                        <a href="{!! URL::action('BlogController@listByTag', $tag) !!}">#{{ $tag }}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="pages">
+                    {!! \PaginationHelper::render($offset, $limit, $count, $baseUrl, []) !!}
                 </div>
             </div>
-        </form>
-    </div>
 
-    <div>
-        {{ $blogs}}
-    </div>
+        </div>
 
-    <div class="box box-primary">
-        <div class="box-body scroll">
-            <table class="table table-bordered">
-                <tr>
-                    <th>Title</th>
-                    <th>Tag</th>
-                    <th>created_at</th>
-                    <th style="width: 40px">&nbsp;</th>
-                </tr>
-                @foreach( $blogs as $blog)
-                    <tr>
-                        <td>
-                            <a href="{!! URL::action('BlogController@show', $blog->id) !!}" class="btn btn-block btn-primary btn-sm">
-                                {{ $blog->title }}
-                            </a>
-                        </td>
-                        <td>
-                            @foreach( $blogTagList[$blog->id] as $tag )
-                                {{ $tag }}
-                            @endforeach
-                        </td>
-                        <td>{{ $blog ->created_at }}</td>
-                    </tr>
+
+
+        <div class="col-md-4 content-main-right">
+            <div class="search">
+                <h3>SEARCH HERE</h3>
+                <form action="{!! action('BlogController@search') !!}" method="get">
+                    <input type="text" name="searchWord" placeholder="" value="{{ $searchWord }}" required>
+                    <input type="submit" value="">
+                </form>
+           </div>
+            <div class="categories">
+                <h3>CATEGORIES</h3>
+                @foreach( $tagCounts as $tagCount)
+                    <li><a href="{!! URL::action('BlogController@listByTag', $tagCount->tag) !!}">{{ $tagCount->tag }}({{ $tagCount->count }})</a></li>
                 @endforeach
-            </table>
+            </div>
+            {{--
+            <div class="archives">
+                <h3>ARCHIVES</h3>
+                <li class="active"><a href="#">July 2014</a></li>
+                <li><a href="#">June 2014</a></li>
+                <li><a href="#">May 2014</a></li>
+            </div>
+            --}}
         </div>
-        <div class="box-footer">
-            {!! \PaginationHelper::render($offset, $limit, $count, $baseUrl, []) !!}
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="fotter">
+        <div class="container">
+            <div class="col-md-4 fotter-info">
+                <h3>INTEGER VITAE LIBERO</h3>
+                     <p>Raesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. </p>
+                     <p>Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus. Phasellus ultrices nulla quis nibh. Quisque a lectus. </p>
+            </div>
+            <div class="col-md-4 fotter-list">
+                <h3>VESTIBULUM COMMO</h3>
+                <ul>
+                <li><a href="#">Ut alliquam solicitudin</a></li>
+                <li><a href="#">Neque id cursus faucibus</a></li>
+                <li><a href="#">Raesent dapibus neque id cursus</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 fotter-media">
+                <h3>FOLLOW US ON....</h3>
+                <div class="social-icons">
+                    <a href="#"><span class="fb"> </span></a>
+                    <a href="#"><span class="twt"> </span></a>
+                    <a href="#"><span class="in"> </span></a>               
+                </div>
+            </div>
+            <div class="clearfix"></div>
         </div>
     </div>
 
-    {{ $tagCounts }}
-    @foreach( $tagCounts as $tagCount)
-        {{ $tagCount->tag }} : {{ $tagCount->count }}
-    @endforeach
+    <div class="copywrite">
+        <div class="container">
+            <p>Copyrights &copy; 2015 Blogging All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+        </div>
+    </div>
 
-    <div>
+{{--
+    <script type="text/javascript">
+        $(document).ready(function() {
+        var defaults = {
+        containerID: 'toTop', // fading element id
+        containerHoverID: 'toTopHover', // fading element hover id
+        scrollSpeed: 1200,
+        easingType: 'linear' 
+        };
+        $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+--}}
+    <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+
+
 
 @stop

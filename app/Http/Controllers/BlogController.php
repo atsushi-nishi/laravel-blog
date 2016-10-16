@@ -101,17 +101,17 @@ class BlogController extends Controller
         $limit = $request->limit();
         $tag = $request->tag;
         $createUserId = 1;
-        $count = $this->blogRepository->countByCreateUserIdAndTag($createUserId, $tag);
         $blogTags = $this->blogTagRepository->getByTag($tag);
         $blogIds = [];
         foreach ($blogTags as $blogTag) {
             $blogIds[] = $blogTag->blog_id;
         }
         $blogs = $this->blogRepository->getIndexInfoByCreateUserIdAndBlogIds($createUserId, $blogIds, 'id', 'desc', $offset, $limit);
+        $count = count($blogs);
         $blogTagList = $this->getBlogTagList($blogs);
         $tagCounts = $this->blogTagRepository->getTagCount();
 
-        return view('pages.blog.search', [
+        return view('pages.blog.index', [
             'blogs'  => $blogs,
             'blogTagList' => $blogTagList,
             'searchWord' => '',
@@ -133,6 +133,7 @@ class BlogController extends Controller
         return view('pages.blog.show', [
             'blog'  => $blog,
             'blogTagList' => $blogTagList,
+            'searchWord' => '',
             'blogComments'  => $blogComments,
             'tagCounts' => $tagCounts,
         ]);
@@ -148,7 +149,6 @@ class BlogController extends Controller
         ]);
 
         $model = $this->blogCommentRepository->create($input);
-        echo var_export($model, true);
         if (empty( $model )) {
             //ToDo
             //return redirect()->back()->withErrors(trans('admin.errors.general.save_failed'));
@@ -168,14 +168,9 @@ class BlogController extends Controller
 
         $blogTags = [];
 
-        echo "blogIds";
-        echo var_export($blogIds, true);
 
         if (empty($blogIds) == false) {
             $blogTags = $this->blogTagRepository->getByBlogIds($blogIds);
-
-            echo "blogTags";
-            echo var_export($blogTags, true);
 
             foreach ($blogTags as $blogTag) {
                 $blogId = $blogTag->blog_id;
