@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call('AdminUserTableSeeder');
+        $this->call('BlogAndBlogTagTableSeeder');
 
         if( App::environment() === 'testing' ) {
             // Add More Seed For Testing
