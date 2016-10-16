@@ -104,7 +104,7 @@
 
         <form action="{!! action('BlogController@search') !!}" method="get">
             <div class="form-group has-feedback">
-                <input type="text" name="word" class="form-control" placeholder="" required>
+                <input type="text" name="searchWord" class="form-control" placeholder="" value="{{ $searchWord }}" required>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="row">
@@ -116,7 +116,7 @@
     </div>
 
     <div>
-        {{ $models }}
+        {{ $blogs}}
     </div>
 
     <div class="box box-primary">
@@ -128,19 +128,19 @@
                     <th>created_at</th>
                     <th style="width: 40px">&nbsp;</th>
                 </tr>
-                @foreach( $models as $model )
+                @foreach( $blogs as $blog)
                     <tr>
                         <td>
-                            <a href="{!! URL::action('BlogController@show', $model->id) !!}" class="btn btn-block btn-primary btn-sm">
-                                {{ $model->title }}
+                            <a href="{!! URL::action('BlogController@show', $blog->id) !!}" class="btn btn-block btn-primary btn-sm">
+                                {{ $blog->title }}
                             </a>
                         </td>
                         <td>
-                            @foreach( $model->tags as $tag )
+                            @foreach( $blogTagList[$blog->id] as $tag )
                                 {{ $tag }}
                             @endforeach
                         </td>
-                        <td>{{ $model->created_at }}</td>
+                        <td>{{ $blog ->created_at }}</td>
                     </tr>
                 @endforeach
             </table>
@@ -150,5 +150,11 @@
         </div>
     </div>
 
+    {{ $tagCounts }}
+    @foreach( $tagCounts as $tagCount)
+        {{ $tagCount->tag }} : {{ $tagCount->count }}
+    @endforeach
+
+    <div>
 
 @stop

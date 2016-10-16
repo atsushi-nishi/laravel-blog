@@ -50,16 +50,19 @@ class BlogController extends Controller
         $createUserId = 1;
 
         $count = $this->blogRepository->countByCreateUserId($createUserId);
-        $models = $this->blogRepository->getIndexInfoByCreateUserId($createUserId, 'id', 'desc', $offset, $limit);
-        $models = $this->appendTags($models);
+        $blogs = $this->blogRepository->getIndexInfoByCreateUserId($createUserId, 'id', 'desc', $offset, $limit);
+        $blogTagList = $this->getBlogTagList($blogs);
+        $tagCounts = $this->blogTagRepository->getTagCount();
 
         return view('pages.blog.index', [
-            'models'  => $models,
+            'blogs'  => $blogs,
+            'blogTagList' => $blogTagList,
+            'searchWord' => '',
             'count'   => $count,
             'offset'  => $offset,
             'limit'   => $limit,
             'baseUrl' => action('BlogController@index'),
-            'name' => "testJames",
+            'tagCounts' => $tagCounts,
         ]);
     }
 
@@ -73,20 +76,22 @@ class BlogController extends Controller
     {
         $offset = $request->offset();
         $limit = $request->limit();
-        $word = $request->word;
+        $searchWord = $request->searchWord;
         $createUserId = 1;
-        $count = $this->blogRepository->countByCreateUserIdAndSearchWord($createUserId, $word);
-        $models = $this->blogRepository->getIndexInfoByCreateUserIdAndSearchWord($createUserId, $word, 'id', 'desc', $offset, $limit);
-        $models = $this->appendTags($models);
+        $count = $this->blogRepository->countByCreateUserIdAndSearchWord($createUserId, $searchWord);
+        $blogs = $this->blogRepository->getIndexInfoByCreateUserIdAndSearchWord($createUserId, $searchWord, 'id', 'desc', $offset, $limit);
+        $blogTagList = $this->getBlogTagList($blogs);
+        $tagCounts = $this->blogTagRepository->getTagCount();
 
-        return view('pages.blog.search', [
-            'models'  => $models,
-            'word' => $word,
+        return view('pages.blog.index', [
+            'blogs' => $blogs,
+            'blogTagList' => $blogTagList,
+            'searchWord' => $searchWord,
             'count'   => $count,
             'offset'  => $offset,
             'limit'   => $limit,
             'baseUrl' => action('BlogController@index'),
-            'name' => "testJames",
+            'tagCounts' => $tagCounts,
         ]);
     }
 
@@ -96,36 +101,40 @@ class BlogController extends Controller
         $limit = $request->limit();
         $tag = $request->tag;
         $createUserId = 1;
-        $count = $this->blogRepository->countByCreateUserIdAndSearchWord($createUserId, $word);
+        $count = $this->blogRepository->countByCreateUserIdAndTag($createUserId, $tag);
         $blogTags = $this->blogTagRepository->getByTag($tag);
         $blogIds = [];
         foreach ($blogTags as $blogTag) {
             $blogIds[] = $blogTag->blog_id;
         }
-        $models = $this->blogRepository->getIndexInfoByCreateUserIdAndBlogIds($createUserId, $blogIds, 'id', 'desc', $offset, $limit);
-        $models = $this->appendTags($models);
+        $blogs = $this->blogRepository->getIndexInfoByCreateUserIdAndBlogIds($createUserId, $blogIds, 'id', 'desc', $offset, $limit);
+        $blogTagList = $this->getBlogTagList($blogs);
+        $tagCounts = $this->blogTagRepository->getTagCount();
 
         return view('pages.blog.search', [
-            'models'  => $models,
-            'word' => $word,
+            'blogs'  => $blogs,
+            'blogTagList' => $blogTagList,
+            'searchWord' => '',
             'count'   => $count,
             'offset'  => $offset,
             'limit'   => $limit,
             'baseUrl' => action('BlogController@index'),
-            'name' => "testJames",
+            'tagCounts' => $tagCounts,
         ]);
     }
 
     public function show($blogId)
     {
-        $blogs = [$this->blogRepository->find($blogId)];
+        $blog = $this->blogRepository->find($blogId);
         $blogComments = $this->blogCommentRepository->getByBlogId($blogId);
-        $blogs = $this->appendTags($blogs);
-        $blog = array_shift($blogs);
+        $blogTagList = $this->getBlogTagList([$blog]);
+        $tagCounts = $this->blogTagRepository->getTagCount();
 
         return view('pages.blog.show', [
             'blog'  => $blog,
+            'blogTagList' => $blogTagList,
             'blogComments'  => $blogComments,
+            'tagCounts' => $tagCounts,
         ]);
     }
 
@@ -148,15 +157,16 @@ class BlogController extends Controller
 
     }
 
-    private function appendTags($blogs)
+    private function getBlogTagList($blogs)
     {
+        $blogTagList = [];
         $blogIds = [];
         foreach ($blogs as $blog) {
             $blogIds[] = $blog->id;
+            $blogTagList[$blog->id] = [];
         }
 
         $blogTags = [];
-        $blogTagList = [];
 
         echo "blogIds";
         echo var_export($blogIds, true);
@@ -167,45 +177,17 @@ class BlogController extends Controller
             echo "blogTags";
             echo var_export($blogTags, true);
 
-
-
             foreach ($blogTags as $blogTag) {
                 $blogId = $blogTag->blog_id;
                 if (empty($blogTagList[$blogId])) {
-                    $blogTagList[$blogId] = [$blogTag->tag];
+                    $blogTagList[$blogId] = [$blogTag->tag]; // no way
                 } else {
                     $blogTagList[$blogId][] = $blogTag->tag;
                 }
             }
         }
 
-        echo "blogTagList";
-        echo var_export($blogTagList, true);
-
-
-        echo "===================blogs======================";
-        //echo var_export($blogs, true);
-
-        foreach ($blogs as $key => $value) {
-            echo "key";
-            echo var_export($key, true);
-            echo "<br />";
-            echo "value";
-            echo var_export($value, true);
-            echo "<br />";
-            $blogId = $value['attributes']['id']; //mmmmmmmmmmmmm orz
-            echo "blogId";
-            echo var_export($blogId, true);
-
-            if (empty($blogTagList) || empty($blogTagList[$blogId])) {
-                echo "!!!empty!!!!";
-                $blogs[$key]['tags'] = [];
-            } else {
-                echo "!!!exist!!!!";
-                $blogs[$key]['tags'] = $blogTagList[$blogId];
-            }
-        }
-
-        return $blogs;
+        return $blogTagList;
     }
+
 }

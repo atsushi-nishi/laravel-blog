@@ -18,6 +18,12 @@ class BlogTagRepository extends SingleKeyModelRepository implements BlogTagRepos
         return $model->whereIn('blog_id', $blogIds)->get();
     }
 
+    public function getTagCount()
+    {
+        $model = $this->getBlankModel();
+        return $model->selectRaw('tag, count(*) as count')->groupBy('tag')->get(['tag', 'count']);
+    }
+
      /**
      * @return blogTag
      */

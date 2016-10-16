@@ -72,11 +72,6 @@ class BlogRepository extends SingleKeyModelRepository implements BlogRepositoryI
             ->get($index_info);
     }
 
-    public function getBySearchWord($order = 'id', $direction = 'desc', $offset, $limit)
-    {
-        $model = $this->getBlankModel();
-
-    }
 
     public function countByCreateUserId($createUserId)
     {
